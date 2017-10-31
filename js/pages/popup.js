@@ -1,22 +1,12 @@
 var storage = chrome.storage.sync;
 if (!storage) storage = chrome.storage.local;
 
-var highlightColors = {
-  owned: '#9CCC65',     // light green
-  wishlist: '#29B6F6'   // light blue
-};
+
 
 var countriesData;
-$.getJSON(chrome.extension.getURL('assets/json/cc.json'), function (data) {
-  countriesData = data;
-});
-
-var storesData;
-$.getJSON(chrome.extension.getURL('assets/json/stores.json'), function (data) {
-  storesData = data.sort(function (a, b) {
-    return ((a.title < b.title) ? -1 : (a.title > b.title) ? 1 : 0);
-  });
-});
+/*$.getJSON(chrome.extension.getURL('assets/json/cc.json'), function (data) {
+    countriesData = data;
+});*/
 
 $(function () {
     restore_options();
@@ -45,40 +35,14 @@ $('#txt_historypagesize').change(function () {
     save_options();
 });
 
-$('#ck_nof, #ck_nof_friend, #ck_nof_comment, #ck_quickBuy, #ck_quickSell, #ck_instantSell, #ck_buySet, #ck_selectAll, #ck_offerdelay,' +
-    ' #ck_autocheckofferprice, #ck_steamrep, #ck_simpify, #ck_totalrow, #ck_overallsum, #ck_medium, #ck_autodecline, #ck_highlight,' +
-    ' #ck_privateignore, #ck_privateblock, #ck_bookmarks, #ck_quickoffer, #ck_quickofferprompt, #ck_quickrefuse,' +
-    ' #ck_quickrefuseprompt, #ck_hidedefaultprice, #ck_agp_hover, #ck_agp_gem, #ck_agp_sticker, #extprice, #extmasslisting,' +
-    ' #ck_currentPrice, #ck_historicalPrice, #ck_permalink, #ck_streamlink, #ck_floatValue, #ck_floatValueListings,' +
-    ' #ck_regionalPrice, #ck_allStores, #ck_hlWishlisted, #ck_hlOwned,' +
-    ' #ck_inventoryPrice, #ck_offertotalprice, #ck_tradableinfo'
-).click(function () {
-    var elem = this;
-    if (['ck_privateignore', 'ck_privateblock'].indexOf(elem.id) !== -1 && $(elem).prop('checked')) {
-        storage.get('apikey', function(items) {
-            if (items.apikey.length) {
-                save_options();
-            } else {
-                alert('This feature will work only if you add API key in settings');
-                $(elem).prop('checked', false);
-            }
-        });
-    } else {
-      save_options();
-    }
+$('#ck_downloadvideo_button').on('click', function () {
+    save_options();
 });
 
 $('#ck_hlWishlisted, #ck_hlOwned').change(function () {
-  $(this).siblings('span').toggle($(this).prop('checked'));
+    $(this).siblings('span').toggle($(this).prop('checked'));
 });
-$('#reset_wishlist_bgcolor').on('click', function () {
-  $(this).siblings('input').val(highlightColors.wishlist);
-  save_options();
-});
-$('#reset_owned_bgcolor').on('click', function () {
-  $(this).siblings('input').val(highlightColors.owned);
-  save_options();
-});
+
 
 $('#txt_fastsell, #txt_offerdelay, #cb_currency, #cb_lang, #txt_delay, #txt_custom, #txt_ignore, #txt_block, #txt_apikey,' +
     '#owned_bgcolor, #wishlisted_bgcolor,' +
@@ -88,38 +52,44 @@ $('#txt_fastsell, #txt_offerdelay, #cb_currency, #cb_lang, #txt_delay, #txt_cust
 });
 
 $('#cb_currency').change(function () {
-    chrome.tabs.query({url: '*://steamcommunity.com/*'}, function (tabs) {
+    chrome.tabs.query({
+        url: '*://steamcommunity.com/*'
+    }, function (tabs) {
 
         $.each(tabs, function (idx, tab) {
             chrome.tabs.sendMessage(tab.id, {
                 type: "updatecurency",
                 currencyid: parseInt($('#cb_currency').val())
-            }, function (response) {
-            });
+            }, function (response) {});
         });
     });
 });
 
 $('#extbgcolor,#exttextcolor').change(function () {
-    chrome.tabs.query({url: '*://steamcommunity.com/*'}, function (tabs) {
+    chrome.tabs.query({
+        url: '*://steamcommunity.com/*'
+    }, function (tabs) {
         $.each(tabs, function (idx, tab) {
             chrome.tabs.sendMessage(tab.id, {
                 type: "changeextcolor",
-                colors: {extbgcolor: $('#extbgcolor').val(), exttextcolor: $('#exttextcolor').val()}
-            }, function (response) {
-            });
+                colors: {
+                    extbgcolor: $('#extbgcolor').val(),
+                    exttextcolor: $('#exttextcolor').val()
+                }
+            }, function (response) {});
         });
     });
 });
 
 $('#ck_simpify').click(function () {
-    chrome.tabs.query({url: '*://steamcommunity.com/*/inventory*'}, function (tabs) {
+    chrome.tabs.query({
+        url: '*://steamcommunity.com/*/inventory*'
+    }, function (tabs) {
         $.each(tabs, function (idx, tab) {
             chrome.tabs.sendMessage(tab.id, {
                 type: "changesimplify",
                 simplify: $('#ck_simpify').is(':checked')
-            }, function (response) {
-            });
+            }, function (response) {});
         });
     });
 });
@@ -158,12 +128,11 @@ $('#lnk_clearbookmarks').click(function (e) {
 
     chrome.storage.local.set({
         bookmarks: null
-    }, function () {
-    });
+    }, function () {});
 });
 
 function play_sound() {
-    var soundFile = $('#cb_sound').val();// document.getElementById('sound').value;
+    var soundFile = $('#cb_sound').val(); // document.getElementById('sound').value;
     if (soundFile != '' && soundFile != 'custom') {
         var sound = new Audio(chrome.extension.getURL('assets/' + soundFile));
         sound.volume = $('#txt_volumn').val() / 100.0;
@@ -185,17 +154,19 @@ function save_options() {
         extcustom.push($('#extcustom').val());
     }
 
-    var regional_countries = $.map($('.regional_country'), function(el, i) {
-      return $(el).val();
+    var regional_countries = $.map($('.regional_country'), function (el, i) {
+        return $(el).val();
     });
     // Remove empty countries
     for (var i = regional_countries.length - 1; i >= 0; i--) {
-      if (regional_countries[i] === '') {
-        regional_countries.splice(i, 1);
-      }
+        if (regional_countries[i] === '') {
+            regional_countries.splice(i, 1);
+        }
     }
 
     storage.set({
+        showdownloadbutton: $('#ck_downloadvideo_button').is(':checked'),
+
         sound: sound,
         soundvolumn: $('#txt_volumn').val(),
         mylistingspagesize: $('#txt_mylistingspagesize').val(),
@@ -274,13 +245,16 @@ function save_options() {
     });
     var bg = chrome.extension.getBackgroundPage();
     if (bg && bg.setOptions) {
-        bg.setOptions({sound: sound});
+        bg.setOptions({
+            sound: sound
+        });
     }
 }
 
 function reset_options() {
     storage.clear(function () {
         storage.set({
+            showdownloadbutton: false,
             sound: 'offersound.ogg',
             soundvolumn: 100,
             mylistingspagesize: 10,
@@ -385,9 +359,7 @@ function reset_options() {
             },
             regional_countries: ['us', 'gb', 'fr', 'jp', 'ru', 'br'],
             owned_show: true,
-            owned_color: highlightColors.owned,
             wishlist_show: true,
-            wishlist_color: highlightColors.wishlist,
             tradableinfo: false
         }, function () {
             restore_options();
@@ -398,6 +370,9 @@ function reset_options() {
 function restore_options() {
     // Use default value color = 'red' and likesColor = true.
     storage.get({
+        showdownloadbutton: false,
+
+
         sound: 'offersound.ogg',
         soundvolumn: 100,
         mylistingspagesize: 10,
@@ -500,13 +475,13 @@ function restore_options() {
             wingamestore: true
         },
         owned_show: true,
-        owned_color: highlightColors.owned,
         wishlist_show: true,
-        wishlist_color: highlightColors.wishlist,
         tradableinfo: false
     }, function (items) {
-        document.getElementById('cb_sound').value = items.sound;
+        $('#ck_downloadvideo_button').prop('checked', items.showdownloadbutton);
 
+
+        document.getElementById('cb_sound').value = items.sound;
         $('#txt_volumn').val(items.soundvolumn);
         $('#ck_nof').prop('checked', items.shownotify);
         $('#ck_nof_friend').prop('checked', items.shownotify_friend);
@@ -569,7 +544,7 @@ function restore_options() {
         $('#ck_currentPrice').prop('checked', items.show_current_price);
         $('#ck_regionalPrice').prop('checked', items.show_regional_price);
         if (!items.show_regional_price) {
-          $('#region_selects').hide();
+            $('#region_selects').hide();
         }
         regions.createRegionalSelectors();
         $('#ck_allStores').prop('checked', items.show_all_stores);
