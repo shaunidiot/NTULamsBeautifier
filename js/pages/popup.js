@@ -166,6 +166,7 @@ function save_options() {
 
     storage.set({
         showdownloadbutton: $('#ck_downloadvideo_button').is(':checked'),
+        showdownloadfilesbutton: $('#ck_downloadfiles_button').is(':checked'),
 
         sound: sound,
         soundvolumn: $('#txt_volumn').val(),
@@ -255,6 +256,7 @@ function reset_options() {
     storage.clear(function () {
         storage.set({
             showdownloadbutton: false,
+            showdownloadfilesbutton: false,
             sound: 'offersound.ogg',
             soundvolumn: 100,
             mylistingspagesize: 10,
@@ -371,6 +373,7 @@ function restore_options() {
     // Use default value color = 'red' and likesColor = true.
     storage.get({
         showdownloadbutton: false,
+        showdownloadbutton: false,
 
 
         sound: 'offersound.ogg',
@@ -479,6 +482,7 @@ function restore_options() {
         tradableinfo: false
     }, function (items) {
         $('#ck_downloadvideo_button').prop('checked', items.showdownloadbutton);
+        $('#ck_downloadfiles_button').prop('checked', items.showdownloadfilesbutton);
 
 
         document.getElementById('cb_sound').value = items.sound;
