@@ -5,7 +5,8 @@ $(document).ready(function () {
     }
 
     var iFrameVideoSrc = videoIFrame.attr('src');
-    var match = /https:\/\/presentur\.ntu\.edu\.sg\/aculearn-idm\/v8\/studio\/embed\.asp\?modulename=(.*?)&author=(.*?)&/g.exec(iFrameVideoSrc);
+    // https://presentur.ntu.edu.sg/aculearn-idm/v4/opr/studioclient.asp?author=0fd405da688d6e5f74f165cdd1e5d34d&amp;modulename=studio7a79312a41dbc4191ec51641fc&amp;cat=acustudio
+    var match = /https:\/\/presentur\.ntu\.edu\.sg\/aculearn-idm\/v.*?\/studio\/embed\.asp\?modulename=(.*?)&amp;author=(.*?)&/g.exec(iFrameVideoSrc);
     if (match === null) {
         return console.log('Unable to find video src.');
     }

@@ -1,0 +1,8 @@
+match (main links with iframes)
+https://lams.ntu.edu.sg/lams/tool/larsrc11/reviewItem.do?mode=learner&sessionMapID=sessionMapID-46346&toolSessionID=402401&itemUid=346219
+https://lams.ntu.edu.sg/lams/tool/larsrc11/reviewItem.do?mode=learner&sessionMapID=sessionMapID-46347&toolSessionID=370300&itemUid=333715
+
+iframes
+https://presentur.ntu.edu.sg/aculearn-idm/v4/opr/studioclient.asp?author=a3a161b4092e8af37e2e7d033f05b4dd&modulename=studio062c913d42b8a627a3eb471218&cat=acustudio
+https://presentur.ntu.edu.sg/aculearn-idm/v4/opr/studioclient.asp?author=a3a161b4092e8af37e2e7d033f05b4dd&modulename=studio8e330fa5ffc7c45ce335a1c39f&cat=acustudio&ver=7
+https://presentur.ntu.edu.sg/aculearn-idm/v8/studio/embed.asp?modulename=studio03029d06baeb4a64abf8832792&amp;author=bd4cf5a246041c0608410d8452d95865&amp;cat=acustudio-av
