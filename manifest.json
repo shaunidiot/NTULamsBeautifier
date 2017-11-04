@@ -38,5 +38,5 @@
     "short_name": "LamsB",
     "update_url": "https://localhost",
     "version": "0.02",
-    "web_accessible_resources": ["_locales/*", "bundle/*", "assets/*", "font/*", "html/bookmarks.html", "css/*.css", "js/*.js", "js/jquery/*.js", "js/lang/*", "img/*"]
+    "web_accessible_resources": ["css/*.css", "js/*.js", "img/*"]
 }
