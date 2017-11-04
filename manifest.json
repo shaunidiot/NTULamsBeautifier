@@ -10,8 +10,13 @@
     },
     "content_scripts": [{
         "css": ["css/core.css", "css/modules/plyr.2.0.16.css"],
-        "js": ["js/jquery.3.2.1.min.js","js/modules/plyr.2.0.16.js","js/modules/url.js", "js/core.js"],
+        "js": ["js/jquery.3.2.1.min.js", "js/modules/plyr.2.0.16.js", "js/modules/url.js", "js/core.js"],
         "matches": ["*://lams.ntu.edu.sg/lams/tool/*"],
+        "run_at": "document_end"
+    }, {
+        "css": ["css/core.css"],
+        "js": ["js/jquery.3.2.1.min.js", "js/modules/url.js", "js/direct.js"],
+        "matches": ["*://ntulearn.ntu.edu.sg/webapps/blackboard/content/listContent.jsp?course_id=*"],
         "run_at": "document_end"
     }],
     // "default_locale": "en",
