@@ -35,7 +35,7 @@ $('#txt_historypagesize').change(function () {
     save_options();
 });
 
-$('#ck_downloadvideo_button').on('click', function () {
+$('#ck_downloadvideo_button, #ck_downloadfiles_button').on('click', function () {
     save_options();
 });
 
@@ -165,7 +165,7 @@ function save_options() {
     }
 
     storage.set({
-        showdownloadbutton: $('#ck_downloadvideo_button').is(':checked'),
+        showdownloadvideobutton: $('#ck_downloadvideo_button').is(':checked'),
         showdownloadfilesbutton: $('#ck_downloadfiles_button').is(':checked'),
 
         sound: sound,
@@ -255,7 +255,7 @@ function save_options() {
 function reset_options() {
     storage.clear(function () {
         storage.set({
-            showdownloadbutton: false,
+            showdownloadvideobutton: false,
             showdownloadfilesbutton: false,
             sound: 'offersound.ogg',
             soundvolumn: 100,
@@ -372,8 +372,8 @@ function reset_options() {
 function restore_options() {
     // Use default value color = 'red' and likesColor = true.
     storage.get({
-        showdownloadbutton: false,
-        showdownloadbutton: false,
+        showdownloadvideobutton: false,
+        showdownloadfilesbutton: false,
 
 
         sound: 'offersound.ogg',
@@ -481,7 +481,7 @@ function restore_options() {
         wishlist_show: true,
         tradableinfo: false
     }, function (items) {
-        $('#ck_downloadvideo_button').prop('checked', items.showdownloadbutton);
+        $('#ck_downloadvideo_button').prop('checked', items.showdownloadvideobutton);
         $('#ck_downloadfiles_button').prop('checked', items.showdownloadfilesbutton);
 
 
