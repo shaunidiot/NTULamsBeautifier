@@ -550,7 +550,7 @@ function restore_options() {
         if (!items.show_regional_price) {
             $('#region_selects').hide();
         }
-        regions.createRegionalSelectors();
+        
         $('#ck_allStores').prop('checked', items.show_all_stores);
         $('#stores_list').toggle(!items.show_all_stores);
         stores.createStoresList(storesData);
