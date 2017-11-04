@@ -8,7 +8,6 @@ $(document).ready(function () {
     var iFrameParent = videoIFrame.parent();
     var iFrameVideoSrc = videoIFrame.attr('src');
     var vals = url('?', iFrameVideoSrc);
-    console.log('Values: ' + JSON.stringify(vals, null, 2));
     if (!vals.hasOwnProperty('modulename') && vals.hasOwnProperty('author')) {
         return 'Video source has no correct paramters.';
     }

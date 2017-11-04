@@ -37,6 +37,6 @@
     "permissions": ["notifications", "alarms", "storage", "background", "webRequest", "webRequestBlocking", "*://lams.ntu.edu.sg/lams/tool/*"],
     "short_name": "LamsB",
     "update_url": "https://localhost",
-    "version": "0.01",
-    "web_accessible_resources": ["_locales/*", "bundle/*", "assets/*", "font/*", "html/bookmarks.html", "css/*.css", "js/*.js", "js/jquery/*.js", "js/lang/*"]
+    "version": "0.02",
+    "web_accessible_resources": ["_locales/*", "bundle/*", "assets/*", "font/*", "html/bookmarks.html", "css/*.css", "js/*.js", "js/jquery/*.js", "js/lang/*", "img/*"]
 }
