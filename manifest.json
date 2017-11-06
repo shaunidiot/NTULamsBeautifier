@@ -8,14 +8,19 @@
         "default_popup": "html/popup.html",
         "default_title": "NTULamsBeautifier"
     },
-    "content_scripts": [{
+    "content_scripts": [{ // this is for beautifying the LAMS video with custom player and download button etc
         "css": ["css/core.css", "css/modules/plyr.2.0.16.css"],
         "js": ["js/jquery.3.2.1.min.js", "js/modules/plyr.2.0.16.js", "js/modules/url.js", "js/video.js"],
         "matches": ["*://lams.ntu.edu.sg/lams/tool/*"],
         "run_at": "document_end"
     }, {
-        "css": ["css/core.css"],
+        "css": ["css/core.css"], // this is for enabling direct download for files
         "js": ["js/jquery.3.2.1.min.js", "js/modules/url.js", "js/direct.js"],
+        "matches": ["*://ntulearn.ntu.edu.sg/webapps/blackboard/content/listContent.jsp?course_id=*"],
+        "run_at": "document_end"
+    }, {
+        "css": ["css/core.css"], // this is for checking if LAMS are completed
+        "js": ["js/jquery.3.2.1.min.js", "js/lamsrecorded.js"],
         "matches": ["*://ntulearn.ntu.edu.sg/webapps/blackboard/content/listContent.jsp?course_id=*"],
         "run_at": "document_end"
     }],
