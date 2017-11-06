@@ -6,7 +6,6 @@ $(document).ready(function () {
     chrome.storage.sync.get({
         showdownloadfilesbutton: false,
     }, function (items) {
-        console.log(items.showdownloadfilesbutton);
         if (!items.showdownloadfilesbutton) {
             return;
         }
