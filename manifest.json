@@ -23,6 +23,11 @@
         "js": ["js/jquery.3.2.1.min.js", "js/lamsrecorded.js"],
         "matches": ["*://ntulearn.ntu.edu.sg/webapps/blackboard/content/listContent.jsp?course_id=*"],
         "run_at": "document_end"
+    }, {
+        "css": ["css/core.css"], // Change recorded live lecture videos to customer player
+        "js": ["js/jquery.3.2.1.min.js", "js/recordedlive.js"],
+        "matches": ["*://ntume22.ntu.edu.sg/aculearn-me/v8/studio/play.asp?=*"],
+        "run_at": "document_end"
     }],
     // "default_locale": "en",
     "description": "__MSG_extension_description__",
