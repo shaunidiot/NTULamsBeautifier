@@ -1,4 +1,5 @@
 /*
+global $
 Feature:
 Check if LAMS are completed without opening the page
 */
@@ -29,7 +30,7 @@ $(document).ready(function () {
 
                 return $(self).html('<span style="color:#000;">' + $(self).text() + ' [Not opened]</span>');
             }
-        }
+        };
         xhr.send();
     });
 });

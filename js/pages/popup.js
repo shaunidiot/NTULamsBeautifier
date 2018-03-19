@@ -553,7 +553,7 @@ function restore_options() {
         
         $('#ck_allStores').prop('checked', items.show_all_stores);
         $('#stores_list').toggle(!items.show_all_stores);
-        stores.createStoresList(storesData);
+        // stores.createStoresList(storesData);
         $('#ck_hlWishlisted').prop('checked', items.wishlist_show);
         $('#wishlisted_bgcolor').val(items.wishlist_color);
         if (!items.wishlist_show) $('#wishlisted_bgcolor').parent().hide();

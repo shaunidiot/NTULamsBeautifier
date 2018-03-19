@@ -9,24 +9,24 @@
         "default_title": "NTULamsBeautifier"
     },
     "content_scripts": [{ // this is for beautifying the LAMS video with custom player and download button etc
-        "css": ["css/core.css", "css/modules/plyr.2.0.16.css"],
-        "js": ["js/jquery.3.2.1.min.js", "js/modules/plyr.2.0.16.js", "js/modules/url.js", "js/video.js"],
+        "css": ["css/core.css", "css/modules/plyr.3.0.2.css"],
+        "js": ["js/jquery-3.3.1.min.js", "js/modules/plyr.3.0.2.min.js", "js/modules/url.js", "js/video.js"],
         "matches": ["*://lams.ntu.edu.sg/lams/tool/*"],
         "run_at": "document_end"
     }, {
         "css": ["css/core.css"], // this is for enabling direct download for files
-        "js": ["js/jquery.3.2.1.min.js", "js/modules/url.js", "js/direct.js"],
+        "js": ["js/jquery-3.3.1.min.js", "js/modules/url.js", "js/direct.js"],
         "matches": ["*://ntulearn.ntu.edu.sg/webapps/blackboard/content/listContent.jsp?course_id=*"],
         "run_at": "document_end"
     }, {
         "css": ["css/core.css"], // this is for checking if LAMS are completed
-        "js": ["js/jquery.3.2.1.min.js", "js/lamsrecorded.js"],
+        "js": ["js/jquery-3.3.1.min.js", "js/lamsrecorded.js"],
         "matches": ["*://ntulearn.ntu.edu.sg/webapps/blackboard/content/listContent.jsp?course_id=*"],
         "run_at": "document_end"
     }, {
-        "css": ["css/core.css"], // Change recorded live lecture videos to customer player
-        "js": ["js/jquery.3.2.1.min.js", "js/recordedlive.js"],
-        "matches": ["*://ntume22.ntu.edu.sg/aculearn-me/v8/studio/play.asp?=*"],
+        "css": ["css/core.css", "css/modules/plyr.3.0.2.css"], // Change recorded live lecture videos to customer player
+        "js": ["js/jquery-3.3.1.min.js", "js/modules/url.js", "js/modules/plyr.3.0.2.min.js", "js/recordedlive.js"],
+        "matches": ["*://*.ntu.edu.sg/aculearn-me/v8/studio/play.asp?*"],
         "run_at": "document_end"
     }],
     // "default_locale": "en",

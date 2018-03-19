@@ -1,4 +1,5 @@
 /*
+global chrome
 Feature:
 Direct download of files (esp pdf)
 */
