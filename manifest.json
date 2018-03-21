@@ -34,7 +34,7 @@
     "externally_connectable": {
         "matches": ["*://ntulearn.ntu.edu.sg/*", "*://lams.ntu.edu.sg/*"]
     },
-    "homepage_url": "http://google.com",
+    "homepage_url": "http://shaunidiot.info",
     /*"icons": {
         "128": "assets/icon128.png",
         "16": "assets/icon16.png",
