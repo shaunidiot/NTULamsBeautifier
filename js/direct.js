@@ -13,15 +13,20 @@ $(document).ready(function () {
 
         $('body').find('a').each(function () {
             var url = $(this).attr('href');
+            console.log(url);
             if (url === null || typeof url == 'undefined') {
                 return;
             }
 
-            if (!url.startsWith('https://ntulearn.ntu.edu.sg/bbcswebdav/pid-') && url.indexOf('-dt-content-rid-') < 0 && url.indexOf('xid-') < 0) {
-                return;
-            }
+            if (url.indexOf('-dt-content-rid-') > 0 && url.indexOf('xid-') > 0) {
+                if (url.startsWith('https://ntulearn.ntu.edu.sg/bbcswebdav/pid-')) {
+                    $(this).parent().append('<a download href="' + url + '"><img src="' + chrome.extension.getURL('img/download.svg') + '" style="height:20px"/></a>');
+                }
 
-            $(this).parent().append('<a download href="' + url + '"><img src="' + chrome.extension.getURL('img/download.svg') + '" style="height:20px"/></a>');
+                if (url.startsWith('/bbcswebdav/pid-') && typeof $(this).attr("onclick") != 'undefined' && $(this).attr("onclick").startsWith("this.href='")) {
+                    $(this).parent().append('<a download href="' + url + '"><img src="' + chrome.extension.getURL('img/download.svg') + '" style="height:20px"/></a>');
+                }
+            }
         });
     });
 });

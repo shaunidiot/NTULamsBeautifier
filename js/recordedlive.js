@@ -18,7 +18,7 @@ $(document).ready(function () {
             console.log(vals.modulename, vals.author, hostname);
             return console.log('Video source has no correct paramters.');
         }
-
+        
         var module = vals.modulename;
         var author = vals.author;
         console.log(module, author, hostname);
