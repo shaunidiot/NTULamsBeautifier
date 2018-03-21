@@ -12,7 +12,7 @@ $(document).ready(function () {
 
         var self = this;
         var url = $(this).attr('href');
-        console.log('Found: ' + url + ". " + $(this).text());
+        // console.log('Found: ' + url + ". " + $(this).text());
 
         var xhr = new XMLHttpRequest();
         xhr.open("GET", url, true);

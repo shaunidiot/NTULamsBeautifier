@@ -43,7 +43,7 @@ $(document).ready(function () {
             // Remove iframe video
             videoIFrame.remove();
             var player = new Plyr('#player', {
-                debug: true
+                // debug: true
             });
 
             $('.js-rewind').on('click', function () {

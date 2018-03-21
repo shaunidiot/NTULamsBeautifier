@@ -13,7 +13,7 @@ $(document).ready(function () {
 
         $('body').find('a').each(function () {
             var url = $(this).attr('href');
-            console.log(url);
+            // console.log(url);
             if (url === null || typeof url == 'undefined') {
                 return;
             }
