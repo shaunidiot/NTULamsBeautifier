@@ -1,13 +1,6 @@
 var storage = chrome.storage.sync;
 if (!storage) storage = chrome.storage.local;
 
-
-
-var countriesData;
-/*$.getJSON(chrome.extension.getURL('assets/json/cc.json'), function (data) {
-    countriesData = data;
-});*/
-
 $(function () {
     restore_options();
 });
@@ -25,30 +18,12 @@ $('#txt_mylistingspagesize').change(function () {
     save_options();
 });
 
-$('#txt_resultnumber').change(function () {
-    $('#lb_resultnumber').text($(this).val());
-    save_options();
-});
-
-$('#txt_historypagesize').change(function () {
-    $('#lb_historypagesize').text($(this).val());
-    save_options();
-});
-
-$('#ck_downloadvideo_button, #ck_downloadfiles_button').on('click', function () {
+$('#ck_downloadvideo_button, #ck_downloadfiles_button, #ck_lams_custom_videoplayer, #ck_recorded_use_custom_videoplayer').on('click', function () {
     save_options();
 });
 
 $('#ck_hlWishlisted, #ck_hlOwned').change(function () {
     $(this).siblings('span').toggle($(this).prop('checked'));
-});
-
-
-$('#txt_fastsell, #txt_offerdelay, #cb_currency, #cb_lang, #txt_delay, #txt_custom, #txt_ignore, #txt_block, #txt_apikey,' +
-    '#owned_bgcolor, #wishlisted_bgcolor,' +
-    ' #txt_qodelay, #txt_qrdelay, #txt_gpdelayscc, #txt_gpdelayerr, #extbgcolor, #exttextcolor, #extcustom'
-).change(function () {
-    save_options();
 });
 
 $('#cb_currency').change(function () {
@@ -167,6 +142,9 @@ function save_options() {
     storage.set({
         showdownloadvideobutton: $('#ck_downloadvideo_button').is(':checked'),
         showdownloadfilesbutton: $('#ck_downloadfiles_button').is(':checked'),
+        lamsusecustomplayer: $('#ck_lams_custom_videoplayer').is(':checked'),
+        recordedlecturesusecustomplayer: $('#ck_recorded_use_custom_videoplayer').is(':checked'),
+
 
         sound: sound,
         soundvolumn: $('#txt_volumn').val(),
@@ -257,6 +235,9 @@ function reset_options() {
         storage.set({
             showdownloadvideobutton: false,
             showdownloadfilesbutton: false,
+            lamsusecustomplayer: false,
+            recordedlecturesusecustomplayer: false,
+
             sound: 'offersound.ogg',
             soundvolumn: 100,
             mylistingspagesize: 10,
@@ -374,7 +355,8 @@ function restore_options() {
     storage.get({
         showdownloadvideobutton: false,
         showdownloadfilesbutton: false,
-
+        lamsusecustomplayer: false,
+        recordedlecturesusecustomplayer: false,
 
         sound: 'offersound.ogg',
         soundvolumn: 100,
@@ -483,7 +465,8 @@ function restore_options() {
     }, function (items) {
         $('#ck_downloadvideo_button').prop('checked', items.showdownloadvideobutton);
         $('#ck_downloadfiles_button').prop('checked', items.showdownloadfilesbutton);
-
+        $('#ck_lams_custom_videoplayer').prop('checked', items.lamsusecustomplayer);
+        $('#ck_recorded_use_custom_videoplayer').prop('checked', items.recordedlecturesusecustomplayer);
 
         document.getElementById('cb_sound').value = items.sound;
         $('#txt_volumn').val(items.soundvolumn);
@@ -550,7 +533,7 @@ function restore_options() {
         if (!items.show_regional_price) {
             $('#region_selects').hide();
         }
-        
+
         $('#ck_allStores').prop('checked', items.show_all_stores);
         $('#stores_list').toggle(!items.show_all_stores);
         // stores.createStoresList(storesData);

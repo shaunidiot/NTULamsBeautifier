@@ -7,8 +7,9 @@ Beautify LAMS
 $(document).ready(function () {
     chrome.storage.sync.get({
         showdownloadvideobutton: false,
+        lamsusecustomplayer: false
     }, function (items) {
-        if (!items.showdownloadvideobutton) {
+        if (!items.showdownloadvideobutton && !items.lamsusecustomplayer) {
             return;
         }
 
@@ -32,22 +33,26 @@ $(document).ready(function () {
         // var title = $('#navcontent > div > div > div > div.panel.panel-default.panel-learner-page > div > div > div:nth-child(4) > strong > span > span').text().trim();
 
         // Add download button
-        $('#navcontent > div > div > div > div.panel.panel-default.panel-learner-page > div > div > div:nth-child(4)').append('<br><a download href="https://' + hostname + '/content/' + author + '/' + module + '/media/1.mp4"><button id="bDownload" type="button">Download Video</button></a>');
+        if (items.showdownloadvideobutton) {
+            $('#navcontent > div > div > div > div.panel.panel-default.panel-learner-page > div > div > div:nth-child(4)').append('<br><a download href="https://' + hostname + '/content/' + author + '/' + module + '/media/1.mp4"><button id="bDownload" type="button">Download Video</button></a>');
+        }
 
-        // Add custom video player
-        $(iFrameParent).append('<div class="vcontainer"><video poster="https://' + hostname + '/content/' + author + '/' + module + '/index/0.jpg" id="player" playsinline controls><source src="https://' + hostname + '/content/' + author + '/' + module + '/media/1.mp4" type="video/mp4"></video></div><div class="actions"><button type="button" class="btn js-rewind">Rewind</button><button type="button" class="btn js-forward">Forward</button></div>');
-        // Remove iframe video
-        videoIFrame.remove();
-        var player = new Plyr('#player', {
-            debug: true
-        });
+        if (items.lamsusecustomplayer) {
+            // Add custom video player
+            $(iFrameParent).append('<div class="vcontainer"><video poster="https://' + hostname + '/content/' + author + '/' + module + '/index/0.jpg" id="player" playsinline controls><source src="https://' + hostname + '/content/' + author + '/' + module + '/media/1.mp4" type="video/mp4"></video></div><div class="actions"><button type="button" class="btn js-rewind">Rewind</button><button type="button" class="btn js-forward">Forward</button></div>');
+            // Remove iframe video
+            videoIFrame.remove();
+            var player = new Plyr('#player', {
+                debug: true
+            });
 
-        $('.js-rewind').on('click', function () {
-            player.rewind();
-        });
+            $('.js-rewind').on('click', function () {
+                player.rewind();
+            });
 
-        $('.js-forward').on('click', function () {
-            player.forward();
-        });
+            $('.js-forward').on('click', function () {
+                player.forward();
+            });
+        }
     });
 });

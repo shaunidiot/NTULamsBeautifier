@@ -6,9 +6,9 @@ Change recorded live lecture videos to custom player
 
 $(document).ready(function () {
     chrome.storage.sync.get({
-        showdownloadvideobutton: false,
+        recordedlecturesusecustomplayer: false,
     }, function (items) {
-        if (!items.showdownloadvideobutton) {
+        if (!items.recordedlecturesusecustomplayer) {
             return;
         }
 

@@ -42,7 +42,7 @@
         "48": "assets/icon48.png"
     },*/
     "manifest_version": 2,
-    "name": "NTU Lams Beautifier",
+    "name": "NTULearn Beautifier",
     "options_page": "html/popup.html",
     "permissions": ["notifications", "alarms", "storage", "background", "webRequest", "webRequestBlocking", "*://lams.ntu.edu.sg/lams/tool/*"],
     "short_name": "LamsB",
