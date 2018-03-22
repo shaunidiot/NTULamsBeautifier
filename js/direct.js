@@ -20,11 +20,11 @@ $(document).ready(function () {
 
             if (url.indexOf('-dt-content-rid-') > 0 && url.indexOf('xid-') > 0) {
                 if (url.startsWith('https://ntulearn.ntu.edu.sg/bbcswebdav/pid-') || url.startsWith('/bbcswebdav/pid-')) {
-                    $(this).parent().append('<a download href="' + url + '"><img src="' + chrome.extension.getURL('img/download.svg') + '" style="height:20px"/></a>');
+                    return $(this).parent().append('<a download href="' + url + '"><img src="' + chrome.extension.getURL('img/download.svg') + '" style="height:20px"/></a>');
                 }
 
                 if (url.startsWith('/bbcswebdav/pid-') && typeof $(this).attr("onclick") != 'undefined' && $(this).attr("onclick").startsWith("this.href='")) {
-                    $(this).parent().append('<a download href="' + url + '"><img src="' + chrome.extension.getURL('img/download.svg') + '" style="height:20px"/></a>');
+                    return $(this).parent().append('<a download href="' + url + '"><img src="' + chrome.extension.getURL('img/download.svg') + '" style="height:20px"/></a>');
                 }
             }
         });
