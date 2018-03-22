@@ -47,6 +47,6 @@
     "permissions": ["notifications", "alarms", "storage", "background", "webRequest", "webRequestBlocking", "*://lams.ntu.edu.sg/lams/tool/*"],
     "short_name": "LamsB",
     "update_url": "https://raw.githubusercontent.com/shaunidiot/NTULamsBeautifier/master/update.xml",
-    "version": "0.01",
+    "version": "0.02",
     "web_accessible_resources": ["css/*.css", "js/*.js", "img/*"]
 }
